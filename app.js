@@ -62,7 +62,7 @@ fetch('http://www.reddit.com/search.json?q=cats+nsfw:no')
             console.log('I should be last');
         }))
         */
-
+/*
 const successfulPromise = new Promise(function(resolve, reject) {
 
     setTimeout(resolve, 3000);
@@ -75,15 +75,33 @@ const unsuccessfulPromise = new Promise(function(resolve, reject) {
 })
 setTimeout(function() {
     console.log(unsuccessfulPromise, 'u');
-}, 5000)
+}, 5000) */
 
 const conditionalPromise = (condition) => new Promise(function(resolve, reject) {
     if (condition % 2 === 0) {
-        resolve();
+        resolve(true);
     } else {
-        reject();
+        reject(false);
     }
 })
 
-console.log(conditionalPromise(4), 'c');
-console.log(conditionalPromise(5), 'c');
+
+conditionalPromise(4).then(res => console.log(res)).catch(err => console.log(err))
+conditionalPromise(5).then(res => console.log(res)).catch(err => console.log(err))
+
+//attempting what fetch does
+
+/*
+function myFetch(url) {
+    const myPromise = new Promise(function(resolve, reject) {
+        const webData = somehowWeGetThis(url);
+        if (webData.statuscode < 400) {
+            resolve(webData);
+        } else {
+            reject(error);
+        }
+    })
+    //return promise which is why you do .fetch(url).then(...).catch(...)
+    return myPromise;
+
+} */
